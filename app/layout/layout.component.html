@@ -7,5 +7,5 @@
   </div>
 </div>
 <label>Escribe tu Mensaje</label>
-<input ng-model="$ctrl.formMessage" type="text">
+<input ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)" type="text">
 <button ng-click="$ctrl.sendMessage()">Enviar</button>

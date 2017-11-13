@@ -12,6 +12,12 @@
         console.log('$onInit...');
       };
 
+      self.pressEnter = function($event){
+        if ($event.which === 13){
+          self.sendMessage();
+        }
+      };
+
       self.sendMessage = function(){
         self.messages.push({
           content: self.formMessage,
