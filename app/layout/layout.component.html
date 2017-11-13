@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Angular {{ $ctrl.botName }}</h1>
+  <div ng-repeat="m in $ctrl.messages">
+    <div class="message" ng-class="{from:m.sentBy==='bot', to:m.sentBy==='user'}">
+      {{ m.content }}
+    </div>
+  </div>
+</div>
+<label>Escribe tu Mensaje</label>
+<input ng-model="$ctrl.formValue" type="text">
+<button ng-clik="$ctrl.sendMessage()">Enviar</button>
