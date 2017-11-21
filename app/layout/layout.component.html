@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Angular {{ $ctrl.botName }}</h1>
+  <button ng-click="$ctrl.triggerClick()">EVENTO!</button>
   <div ng-repeat="m in $ctrl.messages">
     <div class="message" ng-class="{from:m.sentBy==='bot', to:m.sentBy==='user'}">
       {{ m.content }}

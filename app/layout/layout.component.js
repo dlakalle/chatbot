@@ -18,6 +18,17 @@
         }
       };
 
+      self.triggerClick = function(){
+        botService.triggerEvent('WELCOME').then(function(data){
+          $timeout(function () {
+            self.messages.push({
+              content: data,
+              sentBy: 'bot'
+            });
+          });      
+        });
+      };
+
       self.sendMessage = function(){
         self.messages.push({
           content: self.formMessage,
