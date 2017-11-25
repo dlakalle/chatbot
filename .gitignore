@@ -16,6 +16,4 @@
 .strong-pm
 coverage
 node_modules/*
-!node_modules/loopback-component-passport/
-bower_components/*
 npm-debug.log

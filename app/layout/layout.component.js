@@ -19,7 +19,7 @@
       };
 
       self.triggerClick = function(){
-        botService.triggerEvent('WELCOME').then(function(data){
+        botService.triggerEvent('INIT').then(function(data){
           $timeout(function () {
             self.messages.push({
               content: data,
