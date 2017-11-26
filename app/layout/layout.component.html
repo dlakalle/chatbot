@@ -1,12 +1,40 @@
-<div class="container">
-  <h1>Angular {{ $ctrl.botName }}</h1>
-  <button ng-click="$ctrl.triggerClick()">EVENTO!</button>
-  <div ng-repeat="m in $ctrl.messages">
-    <div class="message" ng-class="{from:m.sentBy==='bot', to:m.sentBy==='user'}">
-      {{ m.content }}
-    </div>
-  </div>
+<div class="col-sm-3 col-sm-offset-4">
+  <p>Angular {{ $ctrl.botName }}</p>
 </div>
-<label>Escribe tu Mensaje</label>
-<input ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)" type="text">
-<button ng-click="$ctrl.sendMessage()">Enviar</button>
+
+
+<div class="col-sm-3 col-sm-offset-4 frame" style="height:500px;">
+  <ul style="overflow-y: auto;height: 450px;" scroll-glue force-glue>
+    <li style="width:100%" ng-repeat="m in $ctrl.messages">
+
+      <div class="msj macro" ng-if="m.sentBy==='bot'">
+        <div class="avatar">
+          <img class="img-circle" style="width:100%;" src="app/static/bot.jpg">
+        </div>
+        <div class="text text_l">
+          <p>{{ m.content }}</p>
+          <p><small>{{ $ctrl.botName }}</small></p>
+        </div>
+      </div>
+
+      <div class="msj_rta macro" ng-if="m.sentBy==='user'">
+        <div class="text text_r">
+          <p>{{ m.content }}</p>
+          <p><small>Tú</small></p>
+        </div>
+        <div class="avatar" style="padding:0px 0px 0px 10px !important">
+          <img class="img-circle" style="width:100%;" src="app/static/user.png">
+        </div>
+      </div>
+
+    </li>
+  </ul>
+</div>
+
+<div class="col-sm-3 col-sm-offset-4 frame" >
+    <div class="msj_rta macro" style="margin:auto">                        
+        <div class="text text_r" style="background:whitesmoke !important">
+            <input class="mytext" type="text" placeholder="Escribe tu mensaje" ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)"/>
+        </div> 
+    </div>
+</div>

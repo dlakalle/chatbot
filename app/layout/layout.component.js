@@ -5,7 +5,7 @@
 
       var self = this;
 
-      self.botName = 'Hal 9000';
+      self.botName = 'Verónica';
       self.messages = [];
 
       self.$onInit = function(){
