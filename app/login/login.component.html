@@ -1,0 +1,25 @@
+<style type="text/css">
+
+</style>
+
+<div class="login-caja-login">
+  <div class="login-panel-default">
+
+    <div class="contenedor-form" style="margin: 0 0 20px;">
+      <div class="login-message">{{ $ctrl.message }}</div>
+      <div class="login-col-izq">
+        <input placeholder="Usuario" autofocus="1" maxlength="45" type="text" ng-model="$ctrl.username" ng-enter="$ctrl.login()" ng-keydown="$ctrl.clear()">
+        <input placeholder="Contraseña" type="password" ng-model="$ctrl.password" ng-enter="$ctrl.login()" ng-keydown="$ctrl.clear()">
+      </div>
+      <div class="login-col-der">
+        <div class="submit">
+          <input class="login-submit" type="submit" value="" ng-click="$ctrl.login()">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="bloques_login"></div>

@@ -1,0 +1,20 @@
+.toolbar {
+  background-color: #bd59d4;
+  min-height: 50px;
+  padding-top: 10px;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.toolbar .logout {
+  float: right;
+  cursor: pointer;
+}
+
+.toolbar .logout:hover{
+  text-decoration: underline;
+}
+
+.toolbar .botname {
+  float: left;
+}

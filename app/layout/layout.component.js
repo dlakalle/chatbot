@@ -1,12 +1,16 @@
 (function(){
   angular.module('appModule').component('layout', {
     templateUrl: 'app/layout/layout.component.html',
-    controller: function LayoutController($scope, botService, $timeout){
+    controller: function LayoutController($scope, botService, $timeout, loginService){
 
       var self = this;
 
       self.botName = 'Verónica';
       self.messages = [];
+
+      self.logout = function(){
+        loginService.logout();
+      };
 
       self.$onInit = function(){
         console.log('$onInit...');
@@ -25,7 +29,7 @@
               content: data,
               sentBy: 'bot'
             });
-          });      
+          });
         });
       };
 
@@ -34,7 +38,7 @@
           content: self.formMessage,
           sentBy: 'user'
         });
-        
+
         botService.sendMessage(self.formMessage).then(function(data){
           console.log(data);
           $timeout(function () {

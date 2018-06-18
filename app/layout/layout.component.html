@@ -1,10 +1,10 @@
-<div class="col-sm-3 col-sm-offset-4">
-  <p>Angular {{ $ctrl.botName }}</p>
+<div class="col-sm-3 col-sm-offset-4 toolbar">
+  <p class="botname">{{ $ctrl.botName }}</p>
+  <span class="logout" ng-click="$ctrl.logout()">Salir</span>
 </div>
 
-
-<div class="col-sm-3 col-sm-offset-4 frame" style="height:500px;">
-  <ul style="overflow-y: auto;height: 450px;" scroll-glue force-glue>
+<div class="col-sm-3 col-sm-offset-4 frame" style="height:400px;">
+  <ul style="overflow-y: auto;height: 320px;" scroll-glue force-glue>
     <li style="width:100%" ng-repeat="m in $ctrl.messages">
 
       <div class="msj macro" ng-if="m.sentBy==='bot'">
@@ -32,9 +32,9 @@
 </div>
 
 <div class="col-sm-3 col-sm-offset-4 frame" >
-    <div class="msj_rta macro" style="margin:auto">                        
+    <div class="msj_rta macro" style="margin:auto">
         <div class="text text_r" style="background:whitesmoke !important">
             <input class="mytext" type="text" placeholder="Escribe tu mensaje" ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)"/>
-        </div> 
+        </div>
     </div>
 </div>
