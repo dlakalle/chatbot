@@ -97,6 +97,10 @@
   padding: 0 20px 0 23px;
 }
 
+.login-input::placeholder {
+  line-height: 3.5;
+}
+
 .login-input-brillo {
   display: block;
   position: absolute;
@@ -179,7 +183,7 @@
   padding: 0 20px;
   min-width: 160px;
   height: 50px;
-  background-color: #bd59d4;
+  background-color: #bb43d6;
   border-radius: 25px;
   font-family: veronica_her;
   font-size: 14px;
@@ -219,6 +223,15 @@
 
 .login-veronica {
   display: none;
+}
+
+.login-avatar{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:25%;
+    float:left;
+    padding-right:10px;
 }
 
 @media only screen and (min-width: 350px){

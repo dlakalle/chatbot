@@ -1,40 +1,138 @@
-<div class="col-sm-3 col-sm-offset-4 toolbar">
-  <p class="botname">{{ $ctrl.botName }}</p>
-  <span class="logout" ng-click="$ctrl.logout()">Salir</span>
-</div>
-
-<div class="col-sm-3 col-sm-offset-4 frame" style="height:400px;">
-  <ul style="overflow-y: auto;height: 320px;" scroll-glue force-glue>
-    <li style="width:100%" ng-repeat="m in $ctrl.messages">
-
-      <div class="msj macro" ng-if="m.sentBy==='bot'">
-        <div class="avatar">
-          <img class="img-circle" style="width:100%;" src="app/static/bot.jpg">
-        </div>
-        <div class="text text_l">
-          <p>{{ m.content }}</p>
-          <p><small>{{ $ctrl.botName }}</small></p>
-        </div>
+<div class="container-fluid toolbar fixed-top">
+  <div class="row">
+    <div class="col-4" style="padding-top:5px;">
+      <div class="toolbar-logo">
+        <a href="https://bonsaiconsulting.cl" target="_blank">
+          <img src="app/static/logo_bonsai_white.png"/>
+        </a>
+        <span class="d-none d-md-inline">
+          {{ 'Portal alumnos' | uppercase }}
+        </span>
       </div>
-
-      <div class="msj_rta macro" ng-if="m.sentBy==='user'">
-        <div class="text text_r">
-          <p>{{ m.content }}</p>
-          <p><small>Tú</small></p>
-        </div>
-        <div class="avatar" style="padding:0px 0px 0px 10px !important">
-          <img class="img-circle" style="width:100%;" src="app/static/user.png">
-        </div>
-      </div>
-
-    </li>
-  </ul>
-</div>
-
-<div class="col-sm-3 col-sm-offset-4 frame" >
-    <div class="msj_rta macro" style="margin:auto">
-        <div class="text text_r" style="background:whitesmoke !important">
-            <input class="mytext" type="text" placeholder="Escribe tu mensaje" ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)"/>
-        </div>
     </div>
+    <div class="col">
+    </div>
+    <div class="col-4" style="padding-top:5px;">
+      <div class="toolbar-user" uib-dropdown is-open="$ctrl.isopen">
+        <span class="d-none d-sm-inline chatbox-icon">
+          <i class="fa fa-comments mr-3" ng-click="$ctrl.openChat()" ng-show="$ctrl.chatClosed"></i>
+        </span>
+        <span class="d-none d-sm-inline">
+          <i class="fa fa-bell mr-3" ng-class="{'chatbox-unread': $ctrl.hasUnread}"></i>
+        </span>
+        <span class="d-none d-sm-inline">
+          {{ $ctrl.username | uppercase }}
+        </span>
+        <img id="user-image" src="app/static/user.png" uib-dropdown-toggle ng-disabled="disabled"/>
+        <div class="dropdown-menu dropdown-menu-right" uib-dropdown-menu role="menu" aria-labelledby="user-image">
+          <div class="dropdown-item d-block d-sm-none">{{ $ctrl.username | uppercase }}</div>
+          <div class="dropdown-divider d-block d-sm-none"></div>
+          <div class="dropdown-item" ng-click="$ctrl.logout()" style="cursor:pointer;">Cerrar sesión</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container-fluid portal-fondo" style="margin-top:50px;">
+  <div class="row portal">
+    <div class="col-3 portal-drawer" style="background-color: rgba(236,238,239,.4);">
+      <div class="pt-3 pb-3">
+
+        <h3>
+          Mis cursos
+        </h3>
+        <ul class="list-group portal-mis-cursos">
+          <li class="list-group-item" ng-class="{'active': curso.active}" ng-repeat="curso in $ctrl.cursos" ng-click="$ctrl.setCursoActive(curso)">
+            <i class="fa fa-graduation-cap"></i>
+            &nbsp;
+            {{ curso.nombre }}
+            &nbsp;
+            <span class="badge badge-pill" ng-class="curso.active ? 'badge-warning':'badge-primary'" style="float:right;">{{ curso.notificaciones }}</span>
+          </li>
+        </ul>
+
+        <hr />
+
+        <h3>
+          Aula virtual
+        </h3>
+        <ul class="list-group portal-mis-cursos">
+          <li class="list-group-item" ng-repeat="seccion in $ctrl.secciones">
+            <i class="fa" ng-class="seccion.icono"></i>
+            &nbsp;
+            {{ seccion.nombre }}
+            &nbsp;
+            <span class="badge badge-pill" style="float:right;">{{ curso.notificaciones }}</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class="col-12 col-md-9" >
+      <div class="container-fluid">
+        <header class="row">
+          <div class="col-12 pt-3 pb-3">
+            <div class="card">
+              <div class="card-body">
+
+                <div class="d-flex">
+                  <div class="mr-auto">
+                    <h1>{{ $ctrl.cursoActive.nombre }}</h1>
+                    <br />
+                    <p>
+                      Este es un portal de alumnos o aula virtual "Demo", que simula el de tu institución. De esta manera, puedes ver cómo Verónica se integra con tus plataformas y está al alcance de tus estudiantes.
+                      Para interactuar con ella, lo puedes hacer a mediante la ventana de la esquina inferior derecha, de manera similar a otras aplicaciones.
+                    </p>
+                    <p>
+                      <h3 class="mt-4">
+                        Indicaciones:
+                      </h3>
+                      <ul>
+                        <li class="mt-4">
+                          Si tienes mensajes sin leer, éstos aparecerán al lado de tu nombre de usuario, en forma de notificación, y la ventana de chat cambiará de color.
+                        </li>
+                        <br />
+                        <li>
+                          Para efectos de esta Demo, te recomendamos que cuando hables con Verónica le hagas preguntas sobre el proceso académico, por ejemplo, tomando como inspiración los nombres de cursos que aquí se muestran.
+                        </li>
+                        <br />
+                        <li>
+                          Si cierras la ventana de Verónica, puedes volver a abrirla desde el ícono de notificaciones ya mencionado.
+                        </li>
+                        <br />
+                        <li>
+                          También puedes pedirle a Verónica que te entregue información sobre temas administrativos.
+                        </li>
+                        <br />
+                        <li>
+                          Y si quieres saber por qué Verónica es la mejor opción para tus carreras online y semi presenciales. Tal vez, ella misma te lo puede explicar...
+                        </li>
+                      </ul>
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+      </header>
+
+  </div>
+</div>
+</div>
+</div>
+
+<div style="position:fixed;right:30px;bottom:0;z-index:1030;width:300px;">
+  <chatbox
+    username="$ctrl.username"
+    trigger-event="$ctrl.triggerBotSpeech"
+    notification-callback="$ctrl.notificar"
+    is-closed="$ctrl.chatClosed"
+    toggle-close-chat-callback="$ctrl.toggleCloseChat"
+    ng-show="!$ctrl.chatClosed"
+  ></chatbox>
 </div>

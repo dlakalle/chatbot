@@ -1,0 +1,51 @@
+<div class="col chatbox-bar" ng-class="{'chatbox-bar-unread': $ctrl.hasUnread}" ng-click="$ctrl.toggle()">
+  <div class="row">
+    <p class="chatbox-botname col-5 ml-3 pt-2">{{ $ctrl.botName }}</p>
+    <div class="col">
+    </div>
+    <span class="chatbox-notification col-1 pt-2">
+      <i class="fa fa-bell" ng-class="{'chatbox-unread': $ctrl.hasUnread}"></i>
+    </span>
+    <span class="chatbox-minimize col-1 mr-3 pt-2" ng-click="$ctrl.closeChat()">
+      <i class="fa fa-times"></i>
+      <!-- <i class="fa fa-window-minimize"></i> -->
+    </span>
+  </div>
+</div>
+<div ng-show="!$ctrl.isHidden">
+  <div class="col chatbox-frame" style="height:400px;">
+    <ul class="chatbox-ul" style="overflow-y: auto;height: 320px;" scroll-glue force-glue>
+      <li style="width:100%" ng-repeat="m in $ctrl.messages">
+
+        <div class="chatbox-msj chatbox-macro" ng-if="m.sentBy==='bot'">
+          <div class="d-flex justify-content-center align-items-center chatbox-avatar">
+            <img class="img-circle" style="width:100%;" src="app/static/bot.jpg">
+          </div>
+          <div class="chatbox-text chatbox-text_l">
+            <p>{{ m.content }}</p>
+            <p><small>{{ $ctrl.botName }}</small></p>
+          </div>
+        </div>
+
+        <div class="chatbox-msj_rta chatbox-macro" ng-if="m.sentBy==='user'">
+          <div class="chatbox-text chatbox-text_r">
+            <p>{{ m.content }}</p>
+            <p><small>{{ $ctrl.username }}</small></p>
+          </div>
+          <div class="d-flex justify-content-center align-items-center chatbox-avatar" style="padding:0px 0px 0px 10px !important">
+            <img class="img-circle" style="width:100%;" src="app/static/user.png">
+          </div>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+
+  <div class="col chatbox-frame" >
+    <div class="chatbox-msj_rta chatbox-macro" style="margin:auto">
+      <div class="chatbox-text chatbox-text_r" style="background:whitesmoke !important">
+        <input class="chatbox-mytext" type="text" placeholder="Escribe tu mensaje" ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)"/>
+      </div>
+    </div>
+  </div>
+</div>

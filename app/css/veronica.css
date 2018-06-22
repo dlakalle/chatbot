@@ -1,0 +1,90 @@
+@font-face {
+  font-family: veronica_her;
+  src: url(./fonts/helveticaneue.woff);
+}
+
+.toolbar {
+  background-color: #4b2354;
+  height: 50px;
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.08);
+  box-shadow: 0 2px 4px rgba(0,0,0,.08);
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+.toolbar-user {
+  float:right;
+  color: #fff;
+  font-weight: bolder;
+}
+
+.toolbar-user img {
+  height: 40px;
+  width: auto;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.toolbar-logo {
+  color: #fff;
+  font-weight: bolder;
+}
+
+.toolbar-logo img {
+  height:40px;
+  width:auto;
+  margin: 0 10px;
+}
+
+.toolbar-logo a {
+  text-decoration: none;
+}
+
+.portal-fondo {
+  background: rgba(69,104,220,0.5);
+  background: -webkit-linear-gradient(right, rgba(69,104,220,0.5), rgba(176,106,179,0.5));
+  background: -o-linear-gradient(right, rgba(69,104,220,0.5), rgba(176,106,179,0.5));
+  background: -moz-linear-gradient(right, rgba(69,104,220,0.5), rgba(176,106,179,0.5));
+  background: linear-gradient(right, rgba(69,104,220,0.5), rgba(176,106,179,0.5));
+
+  min-height: 1000px;
+}
+
+.portal {
+  /* font-family: veronica_her; */
+}
+
+.portal-drawer {
+  min-height: 1000px;
+}
+
+.portal-mis-cursos li {
+  cursor: pointer;
+}
+
+.portal-mis-cursos li:not(.active):hover{
+  background-color: #bee5eb;
+}
+
+html, body {height:100%;overflow:auto}
+
+/* .toolbar .logout {
+  float: right;
+  cursor: pointer;
+}
+
+.toolbar .logout:hover{
+  text-decoration: underline;
+}
+
+.toolbar .botname {
+  float: left;
+} */

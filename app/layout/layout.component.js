@@ -4,52 +4,99 @@
     controller: function LayoutController($scope, botService, $timeout, loginService){
 
       var self = this;
+      self.cursos = [
+        {
+          "nombre": "Contabilidad para la gestión",
+          "notificaciones": 3,
+          "active": false
+        },
+        {
+          "nombre": "Demo: Tutora virtual",
+          "notificaciones": 0,
+          "active": true
+        },
+        {
+          "nombre": "Elementos de álgebra",
+          "notificaciones": 14,
+          "active": false
+        },
+        {
+          "nombre": "Inglés 1",
+          "notificaciones": 2,
+          "active": false
+        },
+        {
+          "nombre": "Economía",
+          "notificaciones": 10,
+          "active": false
+        }
+      ];
 
-      self.botName = 'Verónica';
-      self.messages = [];
+      self.secciones = [
+        {
+          "nombre": "Mi horario",
+          "icono": "fa-calendar"
+        },
+        {
+          "nombre": "Boletín de notas",
+          "icono": "fa-calculator"
+        },
+        {
+          "nombre": "Material docente",
+          "icono": "fa-folder-open"
+        },
+        {
+          "nombre": "Foro institucional",
+          "icono": "fa-group"
+        },
+        {
+          "nombre": "Noticias",
+          "icono": "fa-bell"
+        },
+        {
+          "nombre": "Institución",
+          "icono": "fa-institution"
+        }
+      ];
 
-      self.logout = function(){
-        loginService.logout();
-      };
+      self.cursoActive = self.cursos[1];
+
+      self.triggerBotSpeech = 0;
 
       self.$onInit = function(){
-        console.log('$onInit...');
+        self.username = loginService.getUser();
+        $timeout(function () {
+          self.veronicaHabla();
+        }, 3500);
       };
 
-      self.pressEnter = function($event){
-        if ($event.which === 13){
-          self.sendMessage();
-        }
+      self.veronicaHabla = function(){
+        self.triggerBotSpeech += 1;
       };
 
-      self.triggerClick = function(){
-        botService.triggerEvent('WELCOME').then(function(data){
-          $timeout(function () {
-            self.messages.push({
-              content: data,
-              sentBy: 'bot'
-            });
-          });
-        });
+      self.hasUnread = false;
+
+      self.notificar = function(hasUnread){
+        self.hasUnread = hasUnread;
       };
 
-      self.sendMessage = function(){
-        self.messages.push({
-          content: self.formMessage,
-          sentBy: 'user'
-        });
+      self.chatClosed = false;
 
-        botService.sendMessage(self.formMessage).then(function(data){
-          console.log(data);
-          $timeout(function () {
-            self.messages.push({
-              content: data,
-              sentBy: 'bot'
-            });
-          });
-        });
+      self.toggleCloseChat = function(isClosed){
+        self.chatClosed = isClosed;
+      };
 
-        self.formMessage = '';
+      self.openChat = function(){
+        self.chatClosed = false;
+      };
+
+      self.setCursoActive = function(curso){
+        self.cursoActive.active = false;
+        curso.active = true;
+        self.cursoActive = curso;
+      };
+      self.logout = function(){
+        loginService.logout();
       };
     }
   });

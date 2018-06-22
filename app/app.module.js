@@ -4,7 +4,8 @@
     'angular-storage',
     'ngSanitize',
     'luegg.directives',
-    'angular-jwt'
+    'angular-jwt',
+    'ui.bootstrap'
   ]);
 
   app.directive('ngEnter', function () {

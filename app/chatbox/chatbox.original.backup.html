@@ -1,0 +1,40 @@
+<div class="col-sm-3 col-sm-offset-4 toolbar">
+  <p class="botname">{{ $ctrl.botName }}</p>
+  <span class="logout" ng-click="$ctrl.logout()">Salir</span>
+</div>
+
+<div class="col-sm-3 col-sm-offset-4 frame" style="height:400px;">
+  <ul style="overflow-y: auto;height: 320px;" scroll-glue force-glue>
+    <li style="width:100%" ng-repeat="m in $ctrl.messages">
+
+      <div class="msj macro" ng-if="m.sentBy==='bot'">
+        <div class="avatar">
+          <img class="img-circle" style="width:100%;" src="app/static/bot.jpg">
+        </div>
+        <div class="text text_l">
+          <p>{{ m.content }}</p>
+          <p><small>{{ $ctrl.botName }}</small></p>
+        </div>
+      </div>
+
+      <div class="msj_rta macro" ng-if="m.sentBy==='user'">
+        <div class="text text_r">
+          <p>{{ m.content }}</p>
+          <p><small>Tú</small></p>
+        </div>
+        <div class="avatar" style="padding:0px 0px 0px 10px !important">
+          <img class="img-circle" style="width:100%;" src="app/static/user.png">
+        </div>
+      </div>
+
+    </li>
+  </ul>
+</div>
+
+<div class="col-sm-3 col-sm-offset-4 frame" >
+    <div class="msj_rta macro" style="margin:auto">
+        <div class="text text_r" style="background:whitesmoke !important">
+            <input class="mytext" type="text" placeholder="Escribe tu mensaje" ng-model="$ctrl.formMessage" ng-keypress="$ctrl.pressEnter($event)"/>
+        </div>
+    </div>
+</div>
